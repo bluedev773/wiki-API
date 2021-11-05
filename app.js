@@ -43,7 +43,18 @@ app.post("/articles", function(req, res){
     newArticle.save(function(err){
         if(!err){
             res.send("Successfully added a new article.");
-        }else {
+        } else {
+            res.send(err);
+        }
+    });
+});
+
+//DELETE all articles
+app.delete("/articles", function(req, res){
+    Article.deleteMany(function(err){
+        if(!err){
+            res.send("Successfully delete all articles.");
+        } else {
             res.send(err);
         }
     });
