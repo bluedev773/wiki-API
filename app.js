@@ -68,6 +68,19 @@ app.route("/articles/:articleTitle")
                 res.send("No articles matching that title were found.");
             }
         });
+    })
+
+    .put(function(req, res){
+        Article.findOneAndUpdate(
+            {title: req.params.articleTitle},
+            {title: req.body.title, content: req.body.content},
+            {overwrite: true},
+            function(err){
+                if(!err){
+                    res.send("Successfully updated article.");
+                }
+            }
+        );
     });
 
 
